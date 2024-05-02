@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orale</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+    <script>
+        var expr = /^([a-zA-Z0-9_.+-])+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+
+        $(document).ready(function(){
+
+            $("#bEnviar").click(function(){
+
+                var nombre = $("#itNombre").val();
+                var correo = $("#itMail").val();
+                var asunto = $("#itAsunto").val();
+
+                if(nombre==""){
+
+                    $("#mensaje1").fadeIn();
+
+                    return false;
+                }else {
+
+                    $("#mensaje1").fadeOut();
+
+                    if(correo=="" || !expr.test(correo)){
+                        $("#mensaje2").fadeIn();
+                        return false;
+                    }else {
+                        $("#mensaje2").fadeOut();
+                        if(asunto==""){
+
+                            $("#mensaje3").fadeIn();
+                            return false;
+
+                        }
+
+
+                    }
+
+                }
+
+
+            })
+        })
+
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+    
+    <div class="abs-center">
+        <form class="form">
+            <h1>Formulario</h1>
+            <br>
+            <label>*Nombre</label><br>
+            <input type="text" id="itNombre" class="campo"><br>
+            <div id="mensaje1" class="errores">Dame Tu Nombre Pibe</div>
+            
+            <label>*Correo</label><br>
+            <input type="text" id="itMail" class="campo"><br>
+            <div id="mensaje2" class="errores">Dame un email correcto</div>
+
+            <label>*Asunto</label><br>
+            <input type="text" id="itAsunto" class="campo"><br>
+            <div id="mensaje3" class="errores">Escribe El Motivo</div>
+
+            <input type="submit" id="bEnviar" value="Enviar Datos" class="boton">
+        </form>
+    </div>
+
+</body>
+</html>
